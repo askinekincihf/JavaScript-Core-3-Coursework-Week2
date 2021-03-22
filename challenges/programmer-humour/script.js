@@ -13,6 +13,7 @@ function setup(url) {
             console.log(content);
             display(content);
         })
+        .catch(error => console.log(error));
 }
 
 function display(content) {
