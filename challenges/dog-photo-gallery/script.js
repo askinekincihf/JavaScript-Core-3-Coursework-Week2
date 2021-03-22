@@ -1,9 +1,7 @@
+const url = "https://dog.ceo/api/breeds/image/random";
 
-const btn = document.querySelector("button");
-btn.addEventListener("click", createDogGallery);
-
-function createDogGallery() {
-    fetch("https://dog.ceo/api/breeds/image/random")
+function gallery(url) {
+    fetch(url)
         .then((response) => {
             if (response.ok) {
                 return response.json();
@@ -11,17 +9,17 @@ function createDogGallery() {
                 throw new Error(`Encountered something unexpected: ${response.status} ${response.statusText}`);
             }
         })
-        .then((gallery) => {
-            display(gallery);
+        .then((content) => {
+            display(content);
         })
         .catch(error => console.log(error))
 }
 
-function display(gallery) {
+function display(content) {
     const dogList = document.querySelector(".dog-list");
     const list = document.createElement("li");
     const image = document.createElement("img");
-    image.src = gallery.message
+    image.src = content.message;
     list.append(image);
     dogList.append(list);
 }
